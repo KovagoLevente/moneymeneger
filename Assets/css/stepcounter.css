@@ -12,6 +12,7 @@ header{
     text-shadow: 0 0 3px black;
     text-align: center;
     font-size: 200%;
+    border-radius: 15px;
 }
 
 footer{
@@ -22,15 +23,26 @@ footer{
     text-align: center;
     padding: 10px;
 }
+h3{
+    background-color: slategray;
+    line-height: 50px;
+    min-height: 50px;
+    color: white;
+    text-shadow: 0 0 3px black;
+    text-align: center;
+    font-size: 200%;
+    width: 40%;
+    border-radius: 10px;
+}
 
 main{
     padding: 10px;
 }
 
 .container{
-    background-color: white;
-    box-shadow: 0 0 10px gray;
-    padding: 10px;
+    margin-top: 50vw;
+  
+    
 }
 
 #calendar {
