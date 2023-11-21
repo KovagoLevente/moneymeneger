@@ -1,8 +1,8 @@
 
-function showChart(){
+function showChart2(){
     let labels = [];
     let datas = [];
-
+  
   axios.get(`${serverURL}/steps/userID/eq/${loggedUser.ID}`).then((res) => {
     res.data.sort((a,b) => a.date.localeCompare(b.date));
     res.data.forEach((item) => {
@@ -10,17 +10,17 @@ function showChart(){
       datas.push(item.steps);
     });
   });
-
+  
   setTimeout(() => {
     const ctx = document.getElementById("myChart");
-
+  
     new Chart(ctx, {
-      type: "bar",
+      type: "line",
       data: {
         labels: labels,
         datasets: [
           {
-            label: "Kiadás-Bevétel:",
+            label: "Egyenleg:",
             data: datas,
             borderWidth: 3,
           },
@@ -35,4 +35,4 @@ function showChart(){
       },
     });
   }, 500);
-}
+  }
