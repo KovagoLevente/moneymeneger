@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="Assets/css/stepcounter.css">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Menü</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-dark bg-dark fixed-top" >
+        <div class="container-fluid" style="padding-left: 10%;padding-right: 10%">
+          <a class="navbar-brand"  href="#">Menü</a>
+          <button class="navbar-toggler" type="button"data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" ></span>
           </button>
           <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
@@ -36,7 +36,7 @@
                 <!-- bejelentkezve -->
                 <ul class="navbar-nav d-none" id="loggedInMenu">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="render('newdata'); getToday();">Adatrögzítés</a>
+                        <a class="nav-link" href="#" onclick="render('newdata'); getToday();">Adatfelvitel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="render('table'); renderData();">Táblázat</a>
@@ -46,6 +46,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="render('chart'); showChart();">Grafikon</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="render('chart2'); showChart2();">Egyenleg</a>
                     </li> 
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="logout()">Kilépés</a>
