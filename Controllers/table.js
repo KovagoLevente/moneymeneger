@@ -1,37 +1,43 @@
 function getAllSteps(){
     let tbody = document.querySelector('tbody');
-    let sumSteps = document.querySelector('#sumSteps');
-
+    
+    
     axios.get(`${serverURL}/items/userID/eq/${loggedUser.ID}`).then(res=>{
         let i = 0;
-        let sum = 0;
-        res.data.sort((a,b) => a.date.localeCompare(b.date));
-        res.data.forEach(item => {
-            let tr = document.createElement('tr');
-            let td1 = document.createElement('td');
-            let td2 = document.createElement('td');
-            let td3 = document.createElement('td');
+        
+        axios.get(`${serverURL}/catgs/ID/eq/${item.tag}`).then(catDATA => {
+            
+            
+            let category = "";
+        
+            res.data.sort((a,b) => a.date.localeCompare(b.date));
+            res.data.forEach(item => {
+                let tr = document.createElement('tr');
+                let td1 = document.createElement('td');
+                let td2 = document.createElement('td');
+                let td3 = document.createElement('td');
 
-            i++;
-            sum += item.steps;
+                i++;
+                category = catDATA.data[0].tagname;
 
-            td1.innerHTML = i + '.';
+                td1.innerHTML = i + '.';
 
-            td2.innerHTML = item.date.split('T')[0];
+                td2.innerHTML = item.date.split('T')[0];
 
-            td3.innerHTML = item.steps;
-            td3.classList.add('text-end');
+                td3.innerHTML = category;
+                td3.classList.add('text-end');
 
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tbody.appendChild(tr);
-        });
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tbody.appendChild(tr);
 
-        sumSteps.innerHTML = sum;
+            });
+        })
+       
     })
 }
 
 function renderData(){
-    setTimeout(()=>{getAllSteps();}, 200);
+    setTimeout(()=>{getAllSteps();}, 500);
 }

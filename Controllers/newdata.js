@@ -23,7 +23,7 @@ function TagLoader(){
     }, 500);
     }
 
-function addItems(){
+function addItems(){ // Ez az egész egy kín szenvedés volt, lehet egy kicsit hosszú is, de legalább működik, úgyhogy kit érdekel.
 
     let date = document.querySelector('#date');
     let type = document.querySelector('#type');
@@ -35,19 +35,14 @@ function addItems(){
         showMessage("Nem adtál meg minden adatot!");
     }
     else{
-        console.log(`Má' megint kezdődik`);
         let vane = false;
         let upID = -1;
         axios.get(`${serverURL}/items/userID/eq/${loggedUser.ID}`).then(res=>{
-            console.log("Csere keresés...");
             res.data.forEach(item => {
-            if (item.userID == loggedUser.ID && item.date.split('T')[0] == date.value && item.typeID == type.value){
+            if (item.userID == loggedUser.ID && item.date.split('T')[0] == date.value && item.type == type.value){
                 axios.get(`${serverURL}/catgs/`).then(catDATA => {
-                    console.log(catDATA);
                     catDATA.data.forEach(thing => {
-                        console.log(thing.ID, item.tagID);
-                        console.log(thing.ID == item.tagID);
-                        if (thing.ID == item.tagID){
+                        if (thing.ID == item.tag){
                             upID = item.ID
                             vane = true
                             return;
@@ -57,7 +52,6 @@ function addItems(){
             }
             })
         })
-
         setTimeout(()=>{
             if (vane){
                 let data = {
@@ -74,16 +68,15 @@ function addItems(){
                 let newData = {
                     userID : loggedUser.ID,
                     date : date.value,
-                    typeID : type.value,
+                    type : type.value,
                     amount : items.value,
-                    tagID : null
+                    tag : null
                 }
-                console.log(`${custom_tipusok.value.length == 0 ? tipusok.value : custom_tipusok.value}`);
                 if (custom_tipusok.value.length == 0){ // Ha nem saját kategóriát adunk meg
                     axios.get(`${serverURL}/catgs/`).then(catDATA => {
                         catDATA.data.forEach(catInstance =>{
                             if (catInstance.tagname == tipusok.value){
-                                newData.tagID = catInstance.ID;
+                                newData.tag = catInstance.ID;
                                 axios.post(`${serverURL}/items/`, newData).then(req =>{
                                     date.value = null;
                                     items.value = 0;
@@ -100,7 +93,7 @@ function addItems(){
                         let vanilyen = false
                         catDATA.data.forEach(catInstance =>{
                             if (catInstance.tagname == custom_tipusok.value){ // Ha már létezik ez a kategória, ne adjuk a másik táblához megint.
-                                newData.tagID = catInstance.ID;
+                                newData.tag = catInstance.ID;
                                 axios.post(`${serverURL}/items/`, newData).then(req =>{
                                     date.value = null;
                                     items.value = 0;
@@ -119,13 +112,13 @@ function addItems(){
                             axios.post(`${serverURL}/catgs/`, newCat).then(cucmákocska => {
                                 catDATA.data.forEach(catInstance =>{
                                     if (catInstance.tagname == custom_tipusok.value){ 
-                                        newData.tagID = catInstance.ID;
+                                        newData.tag = catInstance.ID;
                                         axios.post(`${serverURL}/items/`, newData).then(req =>{
                                             date.value = null;
                                             items.value = 0;
                                             custom_tipusok.value = "";
                                         })
-                                        alert("Új kategórai sikeresen rögzítve!");
+                                        alert("Adat sikeresen rögzítve!");
                                         return;
                                     }
                                 })
@@ -134,7 +127,7 @@ function addItems(){
                     })
                 }
             }
-        }, 100)
+        }, 500)
         
     }
 }
