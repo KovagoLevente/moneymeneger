@@ -1,19 +1,18 @@
-
 function showCalendar(){
     let myEvents = [];
     axios.get(`${serverURL}/items/userID/eq/${loggedUser.ID}`).then(res=>{
         res.data.forEach(item => {
-            console.log(`${item.tagID}`);
+            console.log(`${item.tag}`);
             let category = ""
-            axios.get(`${serverURL}/catgs/ID/eq/${item.tagID}`).then(catDATA => {
+            axios.get(`${serverURL}/catgs/ID/eq/${item.tag}`).then(catDATA => {
                 category = catDATA.data[0].tagname;
                 
                 myEvents.push({
                     title: `${category}:\n${item.amount}`,
                     start: item.date,
                     allDay: true,
-                    backgroundColor: item.typeID == 0 ? '#6c3333' : '#336c56',
-                    borderColor: item.typeID == 0 ? '#6c3333' : '#336c56',
+                    backgroundColor: item.type == 0 ? '#6c3333' : '#336c56',
+                    borderColor: item.type == 0 ? '#6c3333' : '#336c56',
                 })
             })
 
@@ -32,12 +31,12 @@ function showCalendar(){
             right: 'dayGridMonth,dayGridWeek,dayGridDay,listWeek'
         },
         initialDate: new Date(),
-        navLinks: true, // can click day/week names to navigate views
+        navLinks: true, 
         editable: false,
-        dayMaxEvents: true, // allow "more" link when too many events
+        dayMaxEvents: true, 
         events: myEvents
         });
         
         calendar.render();
-    }, 400);
+    }, 500);
 }
