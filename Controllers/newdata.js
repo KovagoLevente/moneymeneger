@@ -23,7 +23,7 @@ function TagLoader(){
     }, 500);
     }
 
-function addItems(){ // Ez az egész egy kín szenvedés volt, lehet egy kicsit hosszú is, de legalább működik, úgyhogy kit érdekel.
+function addItems(){
 
     let date = document.querySelector('#date');
     let type = document.querySelector('#type');
@@ -125,7 +125,7 @@ function addItems(){ // Ez az egész egy kín szenvedés volt, lehet egy kicsit 
                                             items.value = 0;
                                             custom_tipusok.value = "";
                                         })
-                                        alert("Adat sikeresen rögzítve!");
+                                        alert("Új kategórai sikeresen rögzítve!");
                                         return;
                                     }
                                 })
