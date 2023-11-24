@@ -4,15 +4,15 @@ function showCalendar(){
         res.data.forEach(item => {
             console.log(`${item.tag}`);
             let category = ""
-            axios.get(`${serverURL}/catgs/ID/eq/${item.tag}`).then(catDATA => {
-                category = catDATA.data[0].tagname;
+            axios.get(`${serverURL}/catgs/ID/eq/${item.tag}`).then(Data => {
+                category = Data.data[0].tagname;
                 
                 myEvents.push({
                     title: `${category}:\n${item.amount}`,
                     start: item.date,
                     allDay: true,
-                    backgroundColor: item.type == 0 ? '#6c3333' : '#336c56',
-                    borderColor: item.type == 0 ? '#6c3333' : '#336c56',
+                    backgroundColor: item.type == 0 ? '#B31312' : '#508D69',
+                    borderColor: item.type == 0 ? '#B31312' : '#508D69',
                 })
             })
 
@@ -38,5 +38,5 @@ function showCalendar(){
         });
         
         calendar.render();
-    }, 500);
+    }, 300);
 }

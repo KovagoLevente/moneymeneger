@@ -23,10 +23,9 @@ function TagLoader(){
     }, 500);
     }
 
-function addItems(){ // Ez az egész egy kín szenvedés volt, lehet egy kicsit hosszú is, de legalább működik, úgyhogy kit érdekel.
-
+function addItems(){ 
     let date = document.querySelector('#date');
-    let type = document.querySelector('#type');
+    let type = document.querySelector('input[name = "i"]:checked');
     let items = document.querySelector('#items');
     let tipusok = document.querySelector('#tipusok');
     let custom_tipusok = document.querySelector('#custom_tipusok');
@@ -127,7 +126,7 @@ function addItems(){ // Ez az egész egy kín szenvedés volt, lehet egy kicsit 
                     })
                 }
             }
-        }, 500)
+        }, 300)
         
     }
 }
