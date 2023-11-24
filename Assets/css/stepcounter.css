@@ -13,6 +13,8 @@ header{
     text-align: center;
     font-size: 200%;
     border-radius: 15px;
+    min-width: 250px;
+    max-width: none;
 }
 
 footer{
@@ -33,6 +35,8 @@ h3{
     font-size: 200%;
     width: 40%;
     border-radius: 10px;
+    min-width: 185px;
+    max-width: none;
 }
 
 main{

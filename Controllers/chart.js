@@ -36,10 +36,10 @@ axios.get(`${serverURL}/items/userID/eq/${loggedUser.ID}`).then((res) => {
 });
 
 setTimeout(() => {
-  const ctx = document.getElementById("myChart1");
-  const cty = document.getElementById("myChart2");
+  const x = document.getElementById("myChart1");
+  const y = document.getElementById("myChart2");
 
-  new Chart(ctx, {
+  new Chart(x, {
     type: "bar",
     data: {
       labels: labels,
@@ -75,7 +75,7 @@ setTimeout(() => {
     },
   });
 
-  new Chart(cty, {
+  new Chart(y, {
     type: 'line',
     data: {
       labels: labels,
@@ -88,6 +88,7 @@ setTimeout(() => {
       ],
     },
     options: {
+      
       responsive: true,
       plugins: {
         legend: {
@@ -100,5 +101,5 @@ setTimeout(() => {
       }
     },
   });
-}, 500);
+}, 300);
 }
